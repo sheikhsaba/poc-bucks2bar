@@ -1,0 +1,16 @@
+{
+  "name": "bucks2bar",
+  "version": "1.0.0",
+  "description": "Monthly income and expense tracker with bar chart visualization",
+  "main": "index.html",
+  "scripts": {
+    "start": "Open index.html in your browser"
+  },
+  "keywords": ["finance", "tracker", "income", "expenses"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "chart.js": "^4.4.0"
+  }
+}
