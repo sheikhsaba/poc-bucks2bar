@@ -108,8 +108,49 @@ function updateChart() {
     incomeExpenseChart.update();
 }
 
+// Download chart as PNG
+function downloadChartAsPNG() {
+    if (!incomeExpenseChart) {
+        console.error('Chart not initialized');
+        return;
+    }
+    
+    // Get the canvas element
+    const canvas = document.getElementById('incomeExpenseChart');
+    
+    if (!canvas) {
+        console.error('Canvas element not found');
+        return;
+    }
+    
+    // Convert canvas to PNG image data
+    const imageUrl = canvas.toDataURL('image/png');
+    
+    // Create a temporary link element
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = `income-expense-chart-${new Date().toISOString().split('T')[0]}.png`;
+    
+    // Trigger download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Set up download button event listener
+function setupDownloadButton() {
+    const downloadBtn = document.getElementById('downloadChart');
+    
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', downloadChartAsPNG);
+    }
+}
+
 // Listen for data changes and update chart
 document.addEventListener('dataChanged', updateChart);
 
 // Initialize chart when page loads
-document.addEventListener('DOMContentLoaded', initializeChart);
+document.addEventListener('DOMContentLoaded', function() {
+    initializeChart();
+    setupDownloadButton();
+});
